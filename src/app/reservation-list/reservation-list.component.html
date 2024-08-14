@@ -1,0 +1,33 @@
+<app-home></app-home>
+
+<h2>Reservation List</h2>
+
+<table class="table table-striped" *ngIf="reservations.length; else noReservation">
+  <thead>
+    <tr>
+      <th scope="col">Guest</th>
+      <th scope="col">Email</th>
+      <th scope="col">Check-In</th>
+      <th scope="col">Check-Out</th>
+      <th scope="col">Room Number</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reservation of reservations">
+      <td>{{reservation.guestName}}</td>
+      <td>{{reservation.guestEmail}}</td>
+      <td>{{reservation.checkInDate}}</td>
+      <td>{{reservation.checkOutDate}}</td>
+      <td>{{reservation.roomNumber}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="onDelete(reservation.id)">Remove</button>
+        <button class="btn btn-primary" [routerLink]="['/edit',reservation.id]">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noReservation>
+  <span>No reservations here.</span>
+</ng-template>
